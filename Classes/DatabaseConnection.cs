@@ -10,7 +10,19 @@ namespace CarRentalSystem.Classes
     /// </summary>
     public class DatabaseConnection
     {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["CarRentalDB"].ConnectionString;
+        private static string connectionString;
+
+        static DatabaseConnection()
+        {
+            var connString = ConfigurationManager.ConnectionStrings["CarRentalDB"];
+            if (connString == null || string.IsNullOrWhiteSpace(connString.ConnectionString))
+            {
+                throw new InvalidOperationException(
+                    "Database connection string 'CarRentalDB' not found in App.config. " +
+                    "Please ensure the connection string is properly configured.");
+            }
+            connectionString = connString.ConnectionString;
+        }
 
         /// <summary>
         /// Returns a new SQL connection

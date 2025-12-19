@@ -8,6 +8,7 @@ namespace CarRentalSystem.Forms
 {
     public partial class FormManageVehicles : Form
     {
+        private const int MIN_VEHICLE_YEAR = 1900;
         private int selectedVehicleID = 0;
         private bool isEditMode = false;
 
@@ -267,7 +268,7 @@ namespace CarRentalSystem.Forms
                 return false;
             }
 
-            if (!ValidationHelper.IsValidInteger(txtYear.Text, out int year) || year < 1900 || year > DateTime.Now.Year + 1)
+            if (!ValidationHelper.IsValidInteger(txtYear.Text, out int year) || year < MIN_VEHICLE_YEAR || year > DateTime.Now.Year + 1)
             {
                 MessageBox.Show("Please enter a valid year.", "Validation Error", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);

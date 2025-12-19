@@ -236,12 +236,30 @@ CarRentalSystem/
 
 ## 🔒 Security Considerations
 
+⚠️ **IMPORTANT SECURITY NOTES**:
+
+### Password Hashing
+- This implementation uses **MD5** for password hashing as specified in the requirements
+- **MD5 is NOT cryptographically secure** and should NOT be used in production systems
+- MD5 is vulnerable to collision attacks and rainbow table attacks
+- **For production use**, replace MD5 with:
+  - **Argon2** (recommended - winner of Password Hashing Competition)
+  - **bcrypt** (widely used and secure)
+  - **PBKDF2** (NIST approved)
+  - **scrypt** (memory-hard function)
+
+### Best Practices
 - Change default admin password immediately
-- Use strong passwords (min 6 characters)
+- Use strong passwords (minimum 12 characters recommended for production)
 - Regularly backup the database
 - Review user permissions periodically
-- Keep SQL Server updated
-- Use environment variables for sensitive configuration (production)
+- Keep SQL Server updated with security patches
+- Use environment variables for sensitive configuration in production
+- Implement password complexity requirements
+- Add account lockout after failed login attempts
+- Implement password expiry policies
+- Use HTTPS if deploying as web application
+- Enable SQL Server audit logging
 
 ## 📈 Future Enhancements
 

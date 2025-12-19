@@ -6,14 +6,19 @@ namespace CarRentalSystem.Classes
 {
     /// <summary>
     /// Provides security-related helper methods
+    /// WARNING: This implementation uses MD5 which is NOT cryptographically secure.
+    /// For production use, replace with bcrypt, Argon2, or PBKDF2.
+    /// MD5 is used here only for educational purposes and meeting legacy requirements.
     /// </summary>
     public class SecurityHelper
     {
         /// <summary>
-        /// Encrypts password using MD5 hash
+        /// Hashes password using MD5 algorithm
+        /// WARNING: MD5 is cryptographically broken and should NOT be used for password hashing in production.
+        /// This is implemented per legacy requirements. Use bcrypt, Argon2, or PBKDF2 instead.
         /// </summary>
         /// <param name="password">Plain text password</param>
-        /// <returns>MD5 hashed password</returns>
+        /// <returns>MD5 hashed password (INSECURE - for demonstration only)</returns>
         public static string EncryptPassword(string password)
         {
             if (string.IsNullOrEmpty(password))
